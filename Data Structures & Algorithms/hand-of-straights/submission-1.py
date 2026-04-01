@@ -1,0 +1,21 @@
+class Solution:
+    def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+        if len(hand) % groupSize != 0:
+            return False
+
+        ## sort them, then just try to get consequtive until all of groupSize
+        ## use a hashmap
+
+        hand.sort()
+        count = Counter(hand)
+
+        for num in hand:
+            if count[num]:
+                for i in range(num, num + groupSize):
+                    if not count[i]:
+                        return False
+                    count[i] -= 1
+        
+        
+        
+        return True
